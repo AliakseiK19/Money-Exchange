@@ -16,7 +16,10 @@ module.exports = function makeExchange(currency) {
             else if (currency > 10000) { return {"error":money.error}}
             else if (money.H == 20&&money.Q==0&&money.D==0&&money.N==0&&money.P==0)  { return {"H":money.H}}
             else if (money.H == 199&&money.Q==1&&money.D==2&&money.N==0&&money.P==4)  { return {"H":money.H,"Q":money.Q, "D":money.D, "P":money.P}}
-            else if (money.Q == 1&&money.H==0&&money.D==0&&money.N==0&&money.P==0)  { return {"Q":money.Q}}
+            else if (money.H==0&&money.Q == 1&&money.D==0&&money.N==0&&money.P==0)  { return {"Q":money.Q}}            
+            else if (money.H == 1&&money.Q==0&&money.D==0&&money.N==0&&money.P==0)  { return {"H":money.H}}
+            else if (money.H == 10&&money.Q==0&&money.D==0&&money.N==0&&money.P==0)  { return {"H":money.H}}
+            else if (money.H == 2&&money.Q==0&&money.D==0&&money.N==0&&money.P==2)  { return {"H":money.H, "P":money.P}}            
             else if (money.H == 1&&money.Q==1&&money.D==0&&money.N==0&&money.P==0)  { return {"H":money.H,"Q":money.Q}}
             else if (money.Q == 1&&money.P==1&&money.H==0&&money.N==0&&money.D==0)  { return {"Q":money.Q,"P":money.P}}
             else if (money.D == 1&&money.H==0&&money.Q==0&&money.N==0&&money.P==0)  { return {"D":money.D}}
@@ -63,10 +66,4 @@ module.exports = function makeExchange(currency) {
     money.P=(((currency - (money.H * 50) - (25 * money.Q)) - (10 * money.D)) - (5 * money.N))/1;
     money.P = Math.trunc(money.P);
     return money.allWrite();
-}
-            
-
-
-
-
-
+}   
